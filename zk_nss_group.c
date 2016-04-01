@@ -39,6 +39,7 @@ pack_group_struct(zk_group_pack *data, struct group *result, char *buffer, size_
         nbuff += strlen(data->users[m]) + 1;
         bufleft -= strlen(data->users[m]) + 1;
     }
+    result->gr_mem[data->users_len] = 0;
     DRETURN(NSS_STATUS_SUCCESS, printf("pack_group_struct :: ok\n"))
     clean:
     return ret;
