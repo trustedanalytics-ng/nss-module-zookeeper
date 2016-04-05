@@ -1,3 +1,22 @@
+/*
+  Name Service Switch module for zookeeper
+  Copyright (C) 2016, Intel Corporation.
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
+
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301
+  USA */
+
 #include "zk_nss.h"
 
 static pthread_mutex_t NSS_ZK_MUTEX = PTHREAD_MUTEX_INITIALIZER;
@@ -39,6 +58,7 @@ pack_group_struct(zk_group_pack *data, struct group *result, char *buffer, size_
         nbuff += strlen(data->users[m]) + 1;
         bufleft -= strlen(data->users[m]) + 1;
     }
+    result->gr_mem[data->users_len] = 0;
     DRETURN(NSS_STATUS_SUCCESS, printf("pack_group_struct :: ok\n"))
     clean:
     return ret;

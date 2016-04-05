@@ -1,0 +1,6 @@
+# ignore compiled files
+*.o
+*.so
+
+# ignore hidden files
+.idea/
